@@ -35,7 +35,7 @@ The csv file which contains the gene expression to be used
 
 ### -->is_medulloblastoma
 type=str (choice: 'True' or 'False')  
-help="Whether or not this sample classified as medulloblastoma"  
+Whether or not this sample classified as medulloblastoma. If 'True' (meaning the sample is classified as medulloblastoma), the default control will be `cerebellar_stem`, otherwise `neural_stem` will be used.
 default='False'
 
 ### -->use_custom_control

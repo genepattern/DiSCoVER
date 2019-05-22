@@ -20,4 +20,4 @@ ADD null_module.sh /module/null_module.sh
 #USER $NB_UID
 
 # build using this:
-# docker build -t genepattern/discover:1.4 .
+# docker build -t genepattern/discover:1.1 .

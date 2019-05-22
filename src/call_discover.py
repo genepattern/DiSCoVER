@@ -69,7 +69,12 @@ from drug_suggestion.expression.controls import load_control_exp
 # This assumes only one file is provided
 patient_exp = pd.read_csv(args.gene_expression,index_col=0)
 
+if len(patient_exp)>1:
+    # This means that the csv file was tall, not wide (as expected):
+    patient_exp = patient_exp.set_index(patient_exp.columns[0]).T
 
+#TODO: Set this as a parameter
+# patient_exp.index.values[0]
 case_id = patient_exp.index.values[0]
 
 if args.medullo=='True':
