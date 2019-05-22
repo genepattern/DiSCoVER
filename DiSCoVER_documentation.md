@@ -29,20 +29,20 @@ DiSCoVER paper:
 
 ## Parameters
 
-### gene_expression
+### -->gene_expression
 type=str  
 The csv file which contains the gene expression to be used  
 
-### is_medulloblastoma
+### -->is_medulloblastoma
 type=str (choice: 'True' or 'False')  
 help="Whether or not this sample classified as medulloblastoma"  
 default='False'
 
-### use_custom_control"
+### -->use_custom_control
 type=str (choice: 'True' or 'False')
 Whether or not to use a custom control  
 default='False'  
-### control"
+### -->control
 type=str,  
 The csv file which contains the gene expression of the control"  
 default=''  
