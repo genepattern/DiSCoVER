@@ -1,4 +1,4 @@
-# Kallisto (v1.0)
+# DiSCoVER (v1.0)
 
 This is a bare-bones implementation of DiSCoVER, intended to be used for drug recommendation based on RNAseq expression (e.g., the results from Kallisto).
 
