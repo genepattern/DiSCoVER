@@ -1,11 +1,11 @@
 #DiSCoVER
 #Wed May 22 01:48:52 UTC 2019
 JVMLevel=
-LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00393\:1.0
+LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00393\:1.2
 #DiSCoVER.lsid=urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00393
 author=Edwin F. Juarez;UCSD -- Mesirov Lab
 categories=RNA-Seq;RNA-seq;Statistical Methods;Prediction
-commandLine=python /module/call_discover.py -g <gene_expression> -m <is_medulloblastoma> -u <use_custom_control> <control>
+commandLine=python /module/call_discover.py -g <gene_expression> -m <is_medulloblastoma> -u <use_custom_control> <control> -s <output_supplementary_files>
 cpuType=any
 description=Beta implementation of the DiSCoVER algorithm.
 fileFormat=
@@ -71,7 +71,7 @@ p5_default_value=False
 p5_description=Whether or not to output supplementary files
 p5_fileFormat=
 p5_flag=-s
-p5_name=supplementary_files
+p5_name=output_supplementary_files
 p5_numValues=0..1
 p5_optional=
 p5_prefix=
