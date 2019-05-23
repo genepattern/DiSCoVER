@@ -3,8 +3,6 @@ MAINTAINER Edwin Juarez <ejuarez@ucsd.edu>
 
 ENV LANG=C LC_ALL=C
 
-
-
 USER root
 
 # Adding things to /build/
@@ -20,4 +18,4 @@ ADD null_module.sh /module/null_module.sh
 #USER $NB_UID
 
 # build using this:
-# docker build -t genepattern/discover:1.1 .
+# docker build -t genepattern/discover:1.2 .

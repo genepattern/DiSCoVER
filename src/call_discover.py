@@ -2,6 +2,7 @@ print('About to start running the module')
 ### GP Module reqs
 import argparse
 from timeit import default_timer as timer
+import shutil
 beginning_of_time = timer()
 
 parser = argparse.ArgumentParser()
@@ -21,6 +22,10 @@ parser.add_argument("-c", "--control",
                     type=str,
                     help="Name of the csv file which contains the gene expression of the control",
                     default='')
+parser.add_argument("-s", "--supplementary",
+                    type=str,
+                    help="Whether or not to output supplementary files",
+                    default='False')
 
 # ~~~~Development Optional Arguments~~~~~ #
 # Reminder: "store_true" args, are False by default and when the flag is passed
@@ -87,7 +92,10 @@ else:
 if args.custom_control=='True':
     control = 'custom'
     expression_control = 'custom_control'
-    control_exp = pd.read_csv(read_list_of_files(args.control),index_col=0)
+    control_exp = pd.read_csv(args.control,index_col=0)
+    if len(control_exp)>1:
+        # This means that the csv file was tall, not wide (as expected):
+        control_exp = control_exp.set_index(control_exp.columns[0]).T
     log(f'Using the custom control provided by the file {read_list_of_files(args.control)}')
 elif args.custom_control=='False':
     control = 'default'
@@ -141,6 +149,10 @@ all_drugs = format_drugs(discover_results,
                             disco2cid,
                             out_prefix='discover.{}'.format(expression_control),
                             out_dir=discover_out_dir)
+
+if args.supplementary=='False':
+    shutil.rmtree(discover_out_dir)
+
 format_drugs(discover_results,
              disco2cid,
              out_prefix='discover.{}'.format(expression_control),
