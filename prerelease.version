@@ -1,3 +1,5 @@
+#updated after building 0.4
+#Thu, 23 May 2019 18:00:18 -0400
 #updated after building 0.3
 #Thu, 23 May 2019 17:57:16 -0400
 #updated after building 0.2
@@ -5,4 +7,4 @@
 #updated after building 0.1
 #Tue, 21 May 2019 23:14:18 -0400
 #prerelease version number
-prerelease.number=4
+prerelease.number=5
