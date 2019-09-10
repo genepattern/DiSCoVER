@@ -1,11 +1,11 @@
 #DiSCoVER
 #Wed May 22 01:48:52 UTC 2019
 JVMLevel=
-LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00393\:1.2
+LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00393\:1.0
 #DiSCoVER.lsid=urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00393
 author=Edwin F. Juarez;UCSD -- Mesirov Lab
 categories=RNA-Seq;RNA-seq;Statistical Methods;Prediction
-commandLine=python /module/call_discover.py -g <gene_expression> -u <use_custom_control> -c <control> -s <output_supplementary_files>
+commandLine=python /module/call_discover.py -g <gene_expression> -u <select_control> -c <control> -s <output_supplementary_files>
 cpuType=any
 description=Beta implementation of the DiSCoVER algorithm.
 fileFormat=
@@ -29,10 +29,10 @@ p1_value=
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=Custom
-p2_description=Whether or not to use a custom control
+p2_description=Which control to use (custom, cerebellar stem cell, or neural stem cell)
 p2_fileFormat=
 p2_flag=-u
-p2_name=use_custom_control
+p2_name=select_control
 p2_numValues=0..1
 p2_optional=
 p2_prefix=
