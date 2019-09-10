@@ -1,3 +1,6 @@
+#==============================================================================
+#NOTE: If you are looking for the code of DiSCoVER itself, read the README and then head to: https://datasets.genepattern.org/?prefix=data/module_support_files/DiSCoVER/
+#==============================================================================
 print('About to start running the module')
 ### GP Module reqs
 import argparse
@@ -10,14 +13,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-g", "--gene_expression",
                     type=str,
                     help="Name of the csv file which contains the gene expression to be used")
-parser.add_argument("-m", "--medullo",
+# parser.add_argument("-m", "--medullo",
+#                     type=str,
+#                     help="Whether or not this sample classified as medulloblastoma",
+#                     default='False')
+parser.add_argument("-u", "--use_control",
                     type=str,
-                    help="Whether or not this sample classified as medulloblastoma",
-                    default='False')
-parser.add_argument("-u", "--custom_control",
-                    type=str,
-                    help="Whether or not to use a custom control",
-                    default='False')
+                    help="What type of control to use",
+                    default='Custom')
 parser.add_argument("-c", "--control",
                     type=str,
                     help="Name of the csv file which contains the gene expression of the control",
@@ -82,28 +85,24 @@ if len(patient_exp)>1:
 # patient_exp.index.values[0]
 case_id = patient_exp.index.values[0]
 
-if args.medullo=='True':
-    is_medullo = True
-elif args.medullo=='False':
-    is_medullo = False
-else:
-    exit(f'Unexpected value for parameter "medullo", value {args.medullo}')
-
-if args.custom_control=='True':
-    control = 'custom'
+# Parse control
+if args.use_control=='Custom':
     expression_control = 'custom_control'
     control_exp = pd.read_csv(args.control,index_col=0)
     if len(control_exp)>1:
         # This means that the csv file was tall, not wide (as expected):
         control_exp = control_exp.set_index(control_exp.columns[0]).T
     log(f'Using the custom control provided by the file {read_list_of_files(args.control)}')
-elif args.custom_control=='False':
-    control = 'default'
-    expression_control = 'cerebellar_stem' if is_medullo else 'neural_stem'
+elif args.use_control=='Cerebellar':
+    expression_control = 'cerebellar_stem'
     control_exp = load_control_exp(f'/build/drug_suggestion/expression/controls/{expression_control}')
-    log(f'Using default control, given that the value of is_medullo is "{is_medullo}", the control {expression_control} has been loaded.')
+    log(f'Using the built-in control {expression_control}.')
+elif args.use_control=='Neural':
+    expression_control = 'neural_stem'
+    control_exp = load_control_exp(f'/build/drug_suggestion/expression/controls/{expression_control}')
+    log(f'Using the built-in control {expression_control}.')
 else:
-    exit(f'Unexpected value for parameter "custom_control", value {args.custom_control}')
+    exit(f'Unexpected value for parameter "use_control", value {args.use_control}')
 
 discover_out_dir = 'supplementary_files'
 full_discover_results_file = os.path.join(discover_out_dir,'discover.all.csv')
