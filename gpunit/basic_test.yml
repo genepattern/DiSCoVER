@@ -11,8 +11,7 @@ name: "DiSCoVER - Basic test"
 module: DiSCoVER
 params:
     gene_expression: "https://datasets.genepattern.org/data/module_support_files/DiSCoVER/gene_abundance.sleuth.csv"
-    is_medulloblastoma: "True"
-    use_custom_control: "False"
+    select_control: "Cerebellar"
 assertions:
         diffCmd: diff <%gpunit.diffStripTrailingCR%> -q
         files:
