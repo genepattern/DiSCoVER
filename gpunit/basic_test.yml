@@ -10,10 +10,11 @@
 name: "DiSCoVER - Basic test"
 module: DiSCoVER
 params:
-    gene_expression: "https://datasets.genepattern.org/data/module_support_files/DiSCoVER/gene_abundance.sleuth.csv"
-    select_control: "Cerebellar"
+    disease_subtype_gene_expression_sample: "https://datasets.genepattern.org/data/module_support_files/DiSCoVER/TCGA-A7-A0CE-01.csv"
+    control_sample: "https://datasets.genepattern.org/data/module_support_files/DiSCoVER/TCGA-A7-A0CE-11.csv"
+
 assertions:
         diffCmd: diff <%gpunit.diffStripTrailingCR%> -q
         files:
-            "BT084.discover.cerebellar_stem.reasonable.annotated.csv":
-                diff: "output/basic_test/BT084.discover.cerebellar_stem.reasonable.annotated.csv"
+            "TCGA-A7-A0CE-01.discover.custom_control.reasonable.annotated.csv":
+                diff: "output/basic_test/TCGA-A7-A0CE-01.discover.custom_control.reasonable.annotated.csv"
